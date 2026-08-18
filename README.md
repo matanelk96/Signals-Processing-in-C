@@ -9,7 +9,7 @@ Coursework for an embedded C / digital signal processing course, targeting the
 UART-based voltmeter: reads channel 0 of the ADC, converts the reading to
 millivolts, and transmits the formatted result back over the UART.
 
-### [`MovingAverage/`](MovingAverage)
+### [`MovingAverage/`](MovingAverage) — [details & block diagram](MovingAverage/README.md)
 Moving-average filter lab. Samples channel 0 of the ADC (clocked by Timer 2),
 outputs the raw signal on DAC0 and the filtered (smoothed) signal on DAC1,
 using an efficient running-sum update (`sum += x_new - x_old`) over a
@@ -21,7 +21,7 @@ circular buffer instead of recomputing the full sum every sample.
   `SetTimer2_ADC_DAC.c/.h` files were taken from the verified, working Keil
   project instead of being regenerated from the script.
 
-### [`FIR/`](FIR)
+### [`FIR/`](FIR) — [details & block diagram](FIR/README.md)
 FIR low-pass filter lab (Chapter 22). Samples channel 0 of the ADC (clocked
 by Timer 2), outputs the raw signal on DAC0, and outputs the filtered signal
 on DAC1 (clamped to zero if negative). The filter is a windowed-sinc
