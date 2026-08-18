@@ -21,9 +21,17 @@ circular buffer instead of recomputing the full sum every sample.
   `SetTimer2_ADC_DAC.c/.h` files were taken from the verified, working Keil
   project instead of being regenerated from the script.
 
-### [`TrafficLightController/`](TrafficLightController)
-A separate, unrelated VHDL project (FPGA traffic-light controller) — not part
-of the ADuC841/C coursework.
+### [`FIR/`](FIR)
+FIR low-pass filter lab (Chapter 22). Samples channel 0 of the ADC (clocked
+by Timer 2), outputs the raw signal on DAC0, and outputs the filtered signal
+on DAC1 (clamped to zero if negative). The filter is a windowed-sinc
+low-pass design, convolved over a shifting `idata` sample buffer against
+`code`-segment, scaled-`char` coefficients.
+
+- `fir_design.py` — designs the filter (given a corner frequency and sample
+  rate) and generates `coeffs.h` with the coefficients, tap count, and
+  scaling factor. `coeffs.h` currently holds placeholder values
+  (f=100Hz, Fs=1kHz) — regenerate it for the lab's actual target parameters.
 
 ## Toolchain
 
