@@ -17,9 +17,9 @@ xdata circular_buffer CircularBuffer;
 // ADC interrupt service routine
 static void ADC_ISR(void) interrupt 6
 {
-	TF2 = 0;                        // Timer2 overflow flag is never cleared by hardware
-	ADCI = 0;                       // Harmless if the hardware already cleared it
-    x_new = ADCDATA & 0x0FFF;       // Only the lower 12 bits carry the sample
+	TF2 = 0;
+	ADCI = 0;                       // Clear ADC flag
+    x_new = ADCDATA & 0x0FFF;       // Read 12-bit ADC data into x_new variable
     FLAG = 1;                  // Set ADC interrupt flag
 }
 

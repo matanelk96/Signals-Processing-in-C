@@ -1,16 +1,7 @@
 """
-setTimer2.py
-Names: Matan Ronen & Matanel Kadosh
-
-Generates SetTimer2_ADC_DAC.c/.h (Timer2 as the ADC sample clock, ADC, DAC)
-for a given ADC sample rate.
-
-Usage:
-    py setTimer2.py <ADC_sample_rate>        (the book's 2026 value is 5000)
-
-Timer2 counts up from the reload value to 65536, so
-    ADC_sample_rate = Fosc / (65536 - reload)
-    reload          = 65536 - round(Fosc / ADC_sample_rate)
+setTimer2.py - Names: Matan Ronen & Matanel Kadosh
+Generates SetTimer2_ADC_DAC.c/.h. Usage: py setTimer2.py <ADC_sample_rate>
+reload = 65536 - round(Fosc / ADC_sample_rate)
 """
 import datetime
 import sys
