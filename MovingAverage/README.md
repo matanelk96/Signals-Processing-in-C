@@ -38,7 +38,7 @@ re-sum.
 | `main.c` | Ties everything together: init, then on each new sample (`FLAG`), updates the buffer/sum and writes both DACs, synchronized via the DACCON sync bit |
 | `peripherals.c` / `.h` | `ADC_ISR` (reads the sample, sets `FLAG`) and the circular buffer implementation |
 | `SetTimer2_ADC_DAC.c` / `.h` | Timer2 (ADC sample clock), ADC, and DAC register setup |
-| `setTimer2.py` | Generates `SetTimer2_ADC_DAC.c/.h` for a target ADC sample rate — **note:** its reload-value formula currently has a bug (see the inline comment); the checked-in `.c`/`.h` files were taken from the verified working project instead |
+| `setTimer2.py` | Generates `SetTimer2_ADC_DAC.c/.h` for a target ADC sample rate: `reload = 65536 - round(11059200 / rate)`. The book's 2026 spec is 5 kHz with 50 taps, so run `py setTimer2.py 5000` (reload `0xF75C`, actual 4999.6 Hz) |
 
 ## Key registers
 

@@ -7,8 +7,6 @@ Peripherals file for the IIR moving average machine.
 #include <ADUC841.h>
 #include "peripherals.h"
 
-#define FILTER_TAPS 50
-
 bit FLAG = 0;
 int x_new; 
 sfr16 ADCDATA = 0xD9;
@@ -19,8 +17,9 @@ xdata circular_buffer CircularBuffer;
 // ADC interrupt service routine
 static void ADC_ISR(void) interrupt 6
 {
-	TF2 = 0;
-    x_new = ADCDATA;                // Read ADC data into x_new variable
+	TF2 = 0;                        // Timer2 overflow flag is never cleared by hardware
+	ADCI = 0;                       // Harmless if the hardware already cleared it
+    x_new = ADCDATA & 0x0FFF;       // Only the lower 12 bits carry the sample
     FLAG = 1;                  // Set ADC interrupt flag
 }
 

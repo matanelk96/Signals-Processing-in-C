@@ -15,11 +15,8 @@ outputs the raw signal on DAC0 and the filtered (smoothed) signal on DAC1,
 using an efficient running-sum update (`sum += x_new - x_old`) over a
 circular buffer instead of recomputing the full sum every sample.
 
-- `setTimer2.py` — Python script intended to generate `SetTimer2_ADC_DAC.c/.h`
-  for a given target ADC sample rate. **Note:** the reload-value formula in
-  this script currently has a bug (see the comment inline) — the checked-in
-  `SetTimer2_ADC_DAC.c/.h` files were taken from the verified, working Keil
-  project instead of being regenerated from the script.
+- `setTimer2.py` — Python script that generates `SetTimer2_ADC_DAC.c/.h` for a
+  given target ADC sample rate (the book's 2026 spec: 5 kHz, 50 taps).
 
 ### [`FIR/`](FIR) — [details & block diagram](FIR/README.md)
 FIR low-pass filter lab (Chapter 22). Samples channel 0 of the ADC (clocked

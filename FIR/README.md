@@ -60,10 +60,10 @@ accumulated in a `long int`, and both operands are cast to `long int`
 | File | Role |
 |---|---|
 | `main.c` | Init only — all the filtering happens in the ADC interrupt |
-| `peripherals.c` / `.h` | `ADC_ISR`: shifts the sample buffer, convolves with the coefficients, rescales, clamps, and writes both DACs |
+| `peripherals.c` / `.h` | `ADC_ISR`: shifts the sample buffer, convolves with the coefficients, rescales, clamps, and writes both DACs. `peripherals.c` is the only file that includes `coeffs.h` (it defines the `code` array `h[]`, so including it from a second .c file would define `h[]` twice) |
 | `SetTimer2_ADC_DAC.c` / `.h` | Timer2 (ADC sample clock), ADC, and DAC register setup |
 | `coeffs.h` | Generated coefficient data (`N`, `NUM_COEFF`, `SCALE_FACTOR`, `h[]`) — do not hand-edit |
-| `fir_design.py` | Designs the filter and generates `coeffs.h` |
+| `fir_design.py` | Designs the filter and generates `coeffs.h` (stamped with date/time and our names). Standard library only; if matplotlib is installed it also saves `fir_bode.png` |
 
 ## Key registers
 
