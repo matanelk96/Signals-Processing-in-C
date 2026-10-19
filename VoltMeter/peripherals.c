@@ -23,8 +23,20 @@ int is_voltage = 0;
 
 void UART( void ) interrupt 4
 	/* the heavy code which is calculate the result is occured out of the interuupt*/
-{
-	FLAG = 1;
+{	
+	if (RI)
+		{
+			RI =0;
+			k = SBUF;
+			if (k == 'm' || k == 'M')
+			{
+				FLAG = 1;				//Need to print the measured voltage. Do it in main because it's a heavy func
+			}
+		}
+	if (TI)
+		{
+			TI = 0; 
+		}
 }
 
 void init_UART( void )
@@ -48,10 +60,6 @@ void set_ADC( void )
 
 void print_measured( void )
 {
-	if (k != 'm' && k != 'M')
-	{
-		return;
-	}
 	i = 0;//reset the index
 	if (is_voltage)
 	{
