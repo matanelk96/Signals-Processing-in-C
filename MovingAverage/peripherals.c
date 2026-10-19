@@ -14,12 +14,11 @@ int x_new;
 sfr16 ADCDATA = 0xD9;
 
 
-xdata circular_buffer CircularBuffer;
+xdata circular_buffer CircularBuffer;	//We didn't do a ptr because there is only 1 buffer in this program.
 
 // ADC interrupt service routine
 static void ADC_ISR(void) interrupt 6
 {
-	TF2 = 0;
     x_new = ADCDATA;                // Read ADC data into x_new variable
     FLAG = 1;                  		// Set ADC interrupt flag
 }
