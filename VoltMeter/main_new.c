@@ -14,8 +14,19 @@ void main( void )
 	{
 		if (FLAG)		
 		{
-				TI = 1;						//handle UART interrupt
-				FLAG = 0;					// Reset the FLAG
+			print_measured();
+
+			if (header[i] != 0)
+			{
+				SBUF = header[i];
+				i++;
+			}
+			else
+			{
+			/* This row is rellevant only when header[i] = 0 */
+				FLAG = 0;	// Reset the FLAG	
+			}
+
 	   }
 		
     if(ADCI)								// We have permissions from prof. Engelberg to do like this because it is a small program.
