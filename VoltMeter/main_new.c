@@ -12,26 +12,11 @@ void main( void )
 	
 	while(1)
 	{
-		if (FLAG)		//handle UART interrupt
+		if (FLAG)		
 		{
-				if (RI)
-					{
-							RI =0;
-							k = SBUF;
-							print_measured();
-					}
-				if (TI)
-					{
-						TI = 0; 
-						
-						if (header[i] != 0)
-						{
-							SBUF = header[i];
-							i++;
-						}
-														/* This row is rellevant only when header[i] = 0 */
-					}
-	  }
+				TI = 1;						//handle UART interrupt
+				FLAG = 0;					// Reset the FLAG
+	   }
 		
     if(ADCI)								// We have permissions from prof. Engelberg to do like this because it is a small program.
     {
