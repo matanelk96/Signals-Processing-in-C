@@ -4,44 +4,30 @@
 /*
  * Names: Matan Ronen & Matanel Kadosh
  * File: SetTimer2_ADC_DAC.c
- * Description:
- *   Peripheral initialization module for Timer 2, ADC, and DAC on ADuC841.
+ * Timer 2, ADC and DAC setup. Target: 5 kHz sampling.
+ * Reload = 65536 - round(11059200 / 5000) = 0xF75C (actual 4999.6 Hz).
  */
 
-/**
- * @brief Initializes Timer 2 in auto-reload mode to generate sampling clock.
- * @details Configures Timer 2 reload values RCAP2H and RCAP2L, clears overflow bit,
- *          and starts the timer running.
- */
 void init_Timer2(void)
 {
-   T2CON = 0x00;   // Timer 2 control: 16-bit Auto-Reload mode
-   RCAP2H = 0x07;  // High byte reload value for target ADC sampling frequency
-   RCAP2L = 0xA3;  // Low byte reload value
-   TH2 = RCAP2H;   // Load initial Timer 2 counter high byte
-   TL2 = RCAP2L;   // Load initial Timer 2 counter low byte
-   TF2 = 0;        // Clear Timer 2 overflow flag (must be explicitly cleared in software)
-   TR2 = 1;        // Enable / Start Timer 2
+   T2CON = 0x00;   // Auto-reload, timer mode
+   RCAP2H = 0xF7;  // Reload value, high byte
+   RCAP2L = 0x5C;  // Reload value, low byte
+   TH2 = RCAP2H;   // Initial load
+   TL2 = RCAP2L;
+   TF2 = 0;        // Clear overflow flag
+   TR2 = 1;        // Start Timer 2
 }
 
-/**
- * @brief Configures Analog-to-Digital Converter (ADC) registers.
- * @details Powers up ADC, sets Timer 2 overflow as trigger source, selects Channel 0.
- */
 void setADC(void)
 {
-   ADCCON1 = 0xBA;
-   CCONV = 1;      // Enable Timer 2 conversion trigger
-
-   // ADCCON2: Select ADC Input Channel 0
-   ADCCON2 &= 0xF0;
+   ADCCON1 = 0xBA;  // ADC on, Vref internal, Timer 2 starts conversions
+   CCONV = 1;       // Continuous conversion
+   ADCCON2 &= 0xF0; // Channel 0
+   EADC = 1;        // Enable ADC interrupt
 }
 
-/**
- * @brief Configures Digital-to-Analog Converter (DAC) registers.
- * @details Sets 12-bit mode and sync output control on DACCON.
- */
 void setDAC(void)
 {
-   DACCON = 0x19;
+   DACCON = 0x19;   // 12-bit, range VREF, sync bit cleared
 }

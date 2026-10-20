@@ -1,5 +1,5 @@
 /*
-Name: Matan Ronen & Matanel Kadosh
+Names: Matan Ronen & Matanel Kadosh
 File: main.c
 Chapter 22 lab: a simple FIR low-pass filter.
 ADC channel 0 is sampled at a rate set by Timer2. DAC0 outputs the raw
@@ -9,9 +9,8 @@ interrupt (ADC_ISR, in peripherals.c) -- main() just initializes the
 peripherals and idles.
 */
 
-#include "SetTimer2_ADC_DAC.h"
-#include "peripherals.h"
 #include <aduc841.h>
+#include "SetTimer2_ADC_DAC.h"
 
 void main(void)
 {
