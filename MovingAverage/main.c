@@ -31,8 +31,8 @@ void main( void )
 		{
             FLAG = 0;                      // Reset the sample flag
             x_old = update_buffer(x_new);  // Update buffer with new value
-			DACCON &= ~0x04;			   // Do not output the data in the DACs yet (clear sync bit only)
-            DAC0 = x_new;                  // Update DAC0 with the new value
+						DACCON &= ~0x04;				   // Do not output the data in the DACs yet
+            DAC0 = x_new;                  // Update DAC0 with new value
             sum += (x_new - x_old);        // Update sum with difference
             DAC1 = (int) (sum/FILTER_TAPS);// Update DAC1 with the averaged sum
 			DACCON |= 0X04; 			   // Output the data in the DACs synchronizely
