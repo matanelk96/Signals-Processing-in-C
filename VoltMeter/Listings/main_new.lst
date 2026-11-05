@@ -1,0 +1,84 @@
+C51 COMPILER V9.59.0.0   MAIN_NEW                                                          11/05/2026 18:22:49 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN_NEW
+OBJECT MODULE PLACED IN .\Objects\main_new.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main_new.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -main_new.lst) TABS(2) OBJECT(.\Objects\main_new.obj)
+
+line level    source
+
+   1          /*
+   2          Name: Matan Ronen, Matanel Kadosh
+   3          Date: 
+   4          File: peripheralc.c
+   5          Description: A UART-based voltmeter. 
+   6          Reads up voltage from th ADC (channel 0) and convert it to millivolt (integers) 
+   7          and transmits the formatted result string back to the terminal.
+   8          */
+   9          
+  10          #include "VoltTimer3.h"
+  11          #include "peripherals.h"
+  12          #include <aduc841.h>
+  13          
+  14          void main( void )
+  15          {
+  16   1        init_Timer3();
+  17   1        init_UART();
+  18   1        ena_ints();
+  19   1        set_ADC();
+  20   1        
+  21   1        while(1)
+  22   1        {
+  23   2            if (FLAG)   
+  24   2            {
+  25   3                // Prepare the string and reset the array index 'i' to 0
+  26   3                print_measured(); 
+  27   3      
+  28   3                // Temporarily disable UART interrupts to prevent disruption
+  29   3                // from incoming characters (like pressing 'm' again) during transmission
+  30   3                ES = 0; 
+  31   3                
+  32   3                // Transmit the entire string sequentially until the Null terminator ('\0')
+  33   3                while (header[i] != '\0')
+  34   3                {
+  35   4                    SBUF = header[i];
+  36   4                    while(TI == 0);  // Wait for the hardware to finish transmitting the current character
+  37   4                    TI = 0;          // Manually clear the transmit interrupt flag
+  38   4                    i++;             // Move to the next character in the array
+  39   4                }
+  40   3                
+  41   3                ES = 1;   // Re-enable UART interrupts for future receptions
+  42   3                FLAG = 0; // Transmission complete, reset the FLAG
+  43   3            }
+  44   2            
+  45   2            if(ADCI)
+  46   2            {
+  47   3                ADCI = 0; // Clear the ADC interrupt flag
+  48   3                
+  49   3                // Read the 12-bit ADC value from the data registers
+  50   3                voltage = (ADCDATAH << 8) | ADCDATAL;
+  51   3                voltage &= 0x0FFF; // Mask the upper 4 bits to ensure a valid 12-bit value
+  52   3                
+  53   3                is_voltage = calculate_voltage(); // Calculate volt_h and volt_l
+  54   3                SCONV = 1; // Trigger the next single ADC conversion
+C51 COMPILER V9.59.0.0   MAIN_NEW                                                          11/05/2026 18:22:49 PAGE 2   
+
+  55   3            }
+  56   2        }
+  57   1      }
+  58          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     96    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

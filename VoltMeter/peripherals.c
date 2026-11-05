@@ -60,13 +60,13 @@ void set_ADC( void )
 
 void print_measured( void )
 {
-	i = 0;//reset the index
-	if (is_voltage)
-	{
-		sprintf(header, "The measured voltage is %d.%03d. \n\r", volt_h, volt_l);
-		TI = 1;
-		is_voltage = 0;
-	}
+    i = 0; // Reset the string index back to the beginning
+    
+    // Format the measured voltage into the 'header' buffer.
+    // Note: We removed the 'if (is_voltage)' condition because the ADC 
+    // continuously updates volt_h and volt_l in the background, 
+    // so we just print their most recent values whenever requested.
+    sprintf(header, "The measured voltage is %d.%03d. \n\r", volt_h, volt_l);
 }
 
 

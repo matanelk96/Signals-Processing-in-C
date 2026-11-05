@@ -1,0 +1,310 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/05/2026  18:22:50  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main_new.obj, .\Objects\peripherals.obj, .\Objects\VoltTimer3.obj TO .\Objects\ex-
+>> votmeter PRINT (.\Listings\ex-votmeter.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main_new.obj (MAIN_NEW)
+  .\Objects\peripherals.obj (PERIPHERALS)
+  .\Objects\VoltTimer3.obj (VOLTTIMER3)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\ex-votmeter (MAIN_NEW)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0014H     UNIT         _DATA_GROUP_
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     0033H     UNIT         ?DT?PERIPHERALS
+            IDATA   0055H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0B5CH     01ABH     UNIT         ?C?LIB_CODE
+            CODE    0D07H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0D93H     0060H     UNIT         ?PR?MAIN?MAIN_NEW
+            CODE    0DF3H     0058H     UNIT         ?PR?CALCULATE_VOLTAGE?PERIPHERALS
+            CODE    0E4BH     0044H     UNIT         ?C?LDIV
+            CODE    0E8FH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0EB6H     0024H     UNIT         ?PR?UART?PERIPHERALS
+            CODE    0EDAH     0024H     UNIT         ?CO?PERIPHERALS
+            CODE    0EFEH     0020H     UNIT         ?PR?PRINT_MEASURED?PERIPHERALS
+            CODE    0F1EH     000EH     UNIT         ?C_INITSEG
+            CODE    0F2CH     0009H     UNIT         ?PR?SET_ADC?PERIPHERALS
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2026  18:22:50  PAGE 2
+
+
+            CODE    0F35H     0007H     UNIT         ?PR?INIT_UART?PERIPHERALS
+            CODE    0F3CH     0007H     UNIT         ?PR?INIT_TIMER3?VOLTTIMER3
+            CODE    0F43H     0003H     UNIT         ?PR?ENA_INTS?PERIPHERALS
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\ex-votmeter (MAIN_NEW)
+
+
+SEGMENT                                      BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                     START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------------
+?C_C51STARTUP                             -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN_NEW
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN_NEW                         -----    -----      -----    -----
+  +--> ?PR?INIT_TIMER3?VOLTTIMER3
+  +--> ?PR?INIT_UART?PERIPHERALS
+  +--> ?PR?ENA_INTS?PERIPHERALS
+  +--> ?PR?SET_ADC?PERIPHERALS
+  +--> ?PR?PRINT_MEASURED?PERIPHERALS
+  +--> ?PR?CALCULATE_VOLTAGE?PERIPHERALS
+
+?PR?PRINT_MEASURED?PERIPHERALS            -----    -----      -----    -----
+  +--> ?CO?PERIPHERALS
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?PRINTF?PRINTF                         0020H.0  0001H.1    0008H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\ex-votmeter (MAIN_NEW)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN_NEW
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00D8H.4       PUBLIC        SCONV
+  B:00D8H.7       PUBLIC        ADCI
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  C:0D93H         PUBLIC        main
+  D:00DAH         PUBLIC        ADCDATAH
+  D:00D9H         PUBLIC        ADCDATAL
+  D:0099H         PUBLIC        SBUF
+  -------         PROC          MAIN
+  C:0D93H         LINE#         14
+  C:0D93H         LINE#         15
+  C:0D93H         LINE#         16
+  C:0D96H         LINE#         17
+  C:0D99H         LINE#         18
+  C:0D9CH         LINE#         19
+  C:0D9FH         LINE#         21
+  C:0D9FH         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2026  18:22:50  PAGE 3
+
+
+  C:0D9FH         LINE#         23
+  C:0DA3H         LINE#         24
+  C:0DA3H         LINE#         26
+  C:0DA6H         LINE#         30
+  C:0DA8H         LINE#         33
+  C:0DB0H         LINE#         34
+  C:0DB0H         LINE#         35
+  C:0DB2H         LINE#         36
+  C:0DB5H         LINE#         37
+  C:0DB7H         LINE#         38
+  C:0DB9H         LINE#         39
+  C:0DBBH         LINE#         41
+  C:0DBDH         LINE#         42
+  C:0DC0H         LINE#         43
+  C:0DC0H         LINE#         45
+  C:0DC3H         LINE#         46
+  C:0DC3H         LINE#         47
+  C:0DC5H         LINE#         50
+  C:0DD9H         LINE#         51
+  C:0DE8H         LINE#         53
+  C:0DEFH         LINE#         54
+  C:0DF1H         LINE#         55
+  C:0DF1H         LINE#         56
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN_NEW
+
+  -------         MODULE        PERIPHERALS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00D8H.4       PUBLIC        SCONV
+  C:0DF3H         PUBLIC        calculate_voltage
+  D:0022H         PUBLIC        volt_h
+  D:0024H         PUBLIC        volt_l
+  B:00A8H.4       PUBLIC        ES
+  D:0026H         PUBLIC        FLAG
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:0099H         PUBLIC        SBUF
+  D:0027H         PUBLIC        is_voltage
+  C:0EB6H         PUBLIC        UART
+  B:0098H.6       PUBLIC        SM1
+  C:0F35H         PUBLIC        init_UART
+  C:0F43H         PUBLIC        ena_ints
+  D:00EFH         PUBLIC        ADCCON1
+  D:00D8H         PUBLIC        ADCCON2
+  B:0098H.4       PUBLIC        REN
+  D:0029H         PUBLIC        i
+  D:002AH         PUBLIC        k
+  D:002BH         PUBLIC        header
+  C:0EFEH         PUBLIC        print_measured
+  D:004EH         PUBLIC        row_down
+  D:0051H         PUBLIC        voltage
+  C:0F2CH         PUBLIC        set_ADC
+  -------         PROC          UART
+  C:0EB6H         LINE#         24
+  C:0EBAH         LINE#         27
+  C:0EBDH         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2026  18:22:50  PAGE 4
+
+
+  C:0EBDH         LINE#         29
+  C:0EBFH         LINE#         30
+  C:0EC2H         LINE#         31
+  C:0ECDH         LINE#         32
+  C:0ECDH         LINE#         33
+  C:0ED0H         LINE#         34
+  C:0ED0H         LINE#         35
+  C:0ED0H         LINE#         36
+  C:0ED3H         LINE#         37
+  C:0ED3H         LINE#         38
+  C:0ED5H         LINE#         39
+  C:0ED5H         LINE#         40
+  -------         ENDPROC       UART
+  -------         PROC          INIT_UART
+  C:0F35H         LINE#         42
+  C:0F35H         LINE#         43
+  C:0F35H         LINE#         44
+  C:0F37H         LINE#         45
+  C:0F39H         LINE#         46
+  C:0F3BH         LINE#         47
+  -------         ENDPROC       INIT_UART
+  -------         PROC          ENA_INTS
+  C:0F43H         LINE#         49
+  C:0F43H         LINE#         50
+  C:0F43H         LINE#         51
+  C:0F45H         LINE#         52
+  -------         ENDPROC       ENA_INTS
+  -------         PROC          SET_ADC
+  C:0F2CH         LINE#         54
+  C:0F2CH         LINE#         55
+  C:0F2CH         LINE#         56
+  C:0F2FH         LINE#         57
+  C:0F31H         LINE#         58
+  C:0F34H         LINE#         59
+  -------         ENDPROC       SET_ADC
+  -------         PROC          PRINT_MEASURED
+  C:0EFEH         LINE#         61
+  C:0EFEH         LINE#         62
+  C:0EFEH         LINE#         63
+  C:0F01H         LINE#         69
+  -------         ENDPROC       PRINT_MEASURED
+  -------         PROC          CALCULATE_VOLTAGE
+  C:0DF3H         LINE#         73
+  C:0DF3H         LINE#         74
+  C:0DF3H         LINE#         77
+  C:0E0DH         LINE#         78
+  C:0E1CH         LINE#         79
+  C:0E46H         LINE#         81
+  C:0E4AH         LINE#         82
+  -------         ENDPROC       CALCULATE_VOLTAGE
+  -------         ENDMOD        PERIPHERALS
+
+  -------         MODULE        VOLTTIMER3
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:009DH         PUBLIC        T3FD
+  C:0F3CH         PUBLIC        init_Timer3
+  D:009EH         PUBLIC        T3CON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2026  18:22:50  PAGE 5
+
+
+  -------         PROC          INIT_TIMER3
+  C:0F3CH         LINE#         8
+  C:0F3CH         LINE#         9
+  C:0F3CH         LINE#         10
+  C:0F3CH         LINE#         11
+  C:0F3FH         LINE#         12
+  C:0F42H         LINE#         13
+  -------         ENDPROC       INIT_TIMER3
+  -------         ENDMOD        VOLTTIMER3
+
+  -------         MODULE        ?C?LMUL
+  C:0B5CH         PUBLIC        ?C?LMUL
+  -------         ENDMOD        ?C?LMUL
+
+  -------         MODULE        ?C?SLDIV
+  C:0E4BH         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        PRINTF
+  D:0008H         PUBLIC        ?_PRINTF517?BYTE
+  D:0008H         PUBLIC        ?_PRINTF?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF?BYTE
+  C:0862H         PUBLIC        _PRINTF
+  C:0862H         PUBLIC        _PRINTF517
+  C:085CH         PUBLIC        _SPRINTF
+  C:085CH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:0BABH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0BC4H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0BF1H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?ULDIV
+  C:0C3FH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:0CD1H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:0CE1H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0E8FH         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/05/2026  18:22:50  PAGE 6
+
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 014AH BYTE (16%) *
+******************************************************************************
+
+Program Size: data=81.1 xdata=0 code=1868
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

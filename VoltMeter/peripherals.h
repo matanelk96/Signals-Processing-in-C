@@ -15,7 +15,7 @@ extern long int voltage;
 extern int is_voltage;
 extern char k;
 extern char i;
-extern char header[25];
+extern char header[35];
 extern char FLAG;
 extern unsigned int volt_h;                // High part of voltage measurement
 extern unsigned int volt_l;                // Low part of voltage measurement

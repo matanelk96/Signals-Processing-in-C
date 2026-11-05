@@ -1,0 +1,5 @@
+".\Objects\main_new.obj",
+".\Objects\peripherals.obj",
+".\Objects\VoltTimer3.obj" 
+TO ".\Objects\ex-votmeter" 
+PRINT(".\Listings\ex-votmeter.m51") RAMSIZE(256) 
