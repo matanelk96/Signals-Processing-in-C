@@ -1,0 +1,5 @@
+".\Objects\main.obj",
+".\Objects\peripherals.obj",
+".\Objects\SetTimer2_ADC_DAC.obj" 
+TO ".\Objects\MovingAverage" 
+PRINT(".\Listings\MovingAverage.m51") RAMSIZE(256) 

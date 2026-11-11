@@ -1,0 +1,240 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/11/2026  19:34:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\peripherals.obj, .\Objects\SetTimer2_ADC_DAC.obj TO .\Objects\
+>> MovingAverage PRINT (.\Listings\MovingAverage.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\peripherals.obj (PERIPHERALS)
+  .\Objects\SetTimer2_ADC_DAC.obj (SETTIMER2_ADC_DAC)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\MovingAverage (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         ?DT?MAIN
+            DATA    000EH     0002H     UNIT         ?DT?PERIPHERALS
+                    0010H     0010H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?PERIPHERALS
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0066H     UNIT         ?XD?PERIPHERALS
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0030H                  *** GAP ***
+            CODE    0033H     0003H     ABSOLUTE     
+                    0036H     07CAH                  *** GAP ***
+            CODE    0800H     00CEH     UNIT         ?C?LIB_CODE
+            CODE    08CEH     008CH     UNIT         ?C_C51STARTUP
+            CODE    095AH     0067H     UNIT         ?PR?MAIN?MAIN
+            CODE    09C1H     0044H     UNIT         ?C?LDIV
+            CODE    0A05H     0043H     UNIT         ?PR?_UPDATE_BUFFER?PERIPHERALS
+            CODE    0A48H     0039H     UNIT         ?PR?_INIT_BUFFER?PERIPHERALS
+            CODE    0A81H     0014H     UNIT         ?PR?ADC_ISR?PERIPHERALS
+            CODE    0A95H     0014H     UNIT         ?PR?INIT_TIMER2?SETTIMER2_ADC_DAC
+            CODE    0AA9H     000BH     UNIT         ?PR?SETADC?SETTIMER2_ADC_DAC
+            CODE    0AB4H     0009H     UNIT         ?C_INITSEG
+            CODE    0ABDH     0004H     UNIT         ?PR?SETDAC?SETTIMER2_ADC_DAC
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MovingAverage (MAIN)
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  19:34:22  PAGE 2
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?INIT_TIMER2?SETTIMER2_ADC_DAC
+  +--> ?PR?SETADC?SETTIMER2_ADC_DAC
+  +--> ?PR?SETDAC?SETTIMER2_ADC_DAC
+  +--> ?PR?_INIT_BUFFER?PERIPHERALS
+  +--> ?PR?_UPDATE_BUFFER?PERIPHERALS
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        x_old
+  C:095AH         PUBLIC        main
+  D:00FDH         PUBLIC        DACCON
+  D:000AH         PUBLIC        sum
+  D:00F9H         PUBLIC        DAC0
+  D:00FBH         PUBLIC        DAC1
+  -------         PROC          MAIN
+  C:095AH         LINE#         20
+  C:095AH         LINE#         21
+  C:095AH         LINE#         22
+  C:095DH         LINE#         23
+  C:0960H         LINE#         24
+  C:0963H         LINE#         25
+  C:0965H         LINE#         26
+  C:096AH         LINE#         28
+  C:096AH         LINE#         29
+  C:096AH         LINE#         30
+  C:096DH         LINE#         31
+  C:096DH         LINE#         32
+  C:096FH         LINE#         33
+  C:097AH         LINE#         34
+  C:097DH         LINE#         35
+  C:0983H         LINE#         36
+  C:09A7H         LINE#         37
+  C:09BCH         LINE#         38
+  C:09BFH         LINE#         39
+  C:09BFH         LINE#         40
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        PERIPHERALS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00D8H.7       PUBLIC        ADCI
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  19:34:22  PAGE 3
+
+
+  C:0A48H         PUBLIC        _init_buffer
+  C:0A81H         SYMBOL        ADC_ISR
+  X:0000H         PUBLIC        CircularBuffer
+  B:0020H.0       PUBLIC        FLAG
+  D:000EH         PUBLIC        x_new
+  B:00C8H.7       PUBLIC        TF2
+  D:00D9H         PUBLIC        ADCDATA
+  C:0A05H         PUBLIC        _update_buffer
+  -------         PROC          ADC_ISR
+  C:0A81H         LINE#         18
+  C:0A83H         LINE#         20
+  C:0A85H         LINE#         21
+  C:0A87H         LINE#         22
+  C:0A90H         LINE#         23
+  C:0A92H         LINE#         24
+  -------         ENDPROC       ADC_ISR
+  -------         PROC          _INIT_BUFFER
+  D:0007H         SYMBOL        length
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0A48H         LINE#         27
+  C:0A48H         LINE#         28
+  C:0A48H         LINE#         29
+  C:0A4BH         LINE#         30
+  C:0A50H         LINE#         31
+  C:0A55H         LINE#         33
+  C:0A64H         LINE#         34
+  C:0A64H         LINE#         35
+  C:0A79H         LINE#         36
+  C:0A80H         LINE#         37
+  -------         ENDPROC       _INIT_BUFFER
+  -------         PROC          _UPDATE_BUFFER
+  D:0006H         SYMBOL        x_new
+  -------         DO            
+  D:0002H         SYMBOL        x_old
+  -------         ENDDO         
+  C:0A05H         LINE#         40
+  C:0A05H         LINE#         41
+  C:0A05H         LINE#         42
+  C:0A1AH         LINE#         43
+  C:0A2BH         LINE#         44
+  C:0A39H         LINE#         45
+  C:0A39H         LINE#         46
+  C:0A3CH         LINE#         47
+  C:0A3EH         LINE#         49
+  C:0A3EH         LINE#         50
+  C:0A43H         LINE#         51
+  C:0A43H         LINE#         52
+  C:0A47H         LINE#         53
+  -------         ENDPROC       _UPDATE_BUFFER
+  -------         ENDMOD        PERIPHERALS
+
+  -------         MODULE        SETTIMER2_ADC_DAC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.6       PUBLIC        EADC
+  C:0ABDH         PUBLIC        setDAC
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  19:34:22  PAGE 4
+
+
+  C:0AA9H         PUBLIC        setADC
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  D:00FDH         PUBLIC        DACCON
+  B:00C8H.7       PUBLIC        TF2
+  C:0A95H         PUBLIC        init_Timer2
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  B:00C8H.2       PUBLIC        TR2
+  D:00EFH         PUBLIC        ADCCON1
+  D:00D8H         PUBLIC        ADCCON2
+  D:00C8H         PUBLIC        T2CON
+  B:00D8H.5       PUBLIC        CCONV
+  -------         PROC          INIT_TIMER2
+  C:0A95H         LINE#         11
+  C:0A95H         LINE#         12
+  C:0A95H         LINE#         13
+  C:0A98H         LINE#         14
+  C:0A9BH         LINE#         15
+  C:0A9EH         LINE#         16
+  C:0AA1H         LINE#         17
+  C:0AA4H         LINE#         18
+  C:0AA6H         LINE#         19
+  C:0AA8H         LINE#         20
+  -------         ENDPROC       INIT_TIMER2
+  -------         PROC          SETADC
+  C:0AA9H         LINE#         22
+  C:0AA9H         LINE#         23
+  C:0AA9H         LINE#         24
+  C:0AACH         LINE#         25
+  C:0AAEH         LINE#         26
+  C:0AB1H         LINE#         27
+  C:0AB3H         LINE#         28
+  -------         ENDPROC       SETADC
+  -------         PROC          SETDAC
+  C:0ABDH         LINE#         30
+  C:0ABDH         LINE#         31
+  C:0ABDH         LINE#         32
+  C:0AC0H         LINE#         33
+  -------         ENDPROC       SETDAC
+  -------         ENDMOD        SETTIMER2_ADC_DAC
+
+  -------         MODULE        ?C?SLDIV
+  C:09C1H         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?ULDIV
+  C:083CH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0125H BYTE (14%) *
+******************************************************************************
+
+Program Size: data=17.1 xdata=102 code=711
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

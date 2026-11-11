@@ -29,5 +29,5 @@ void setADC(void)
 
 void setDAC(void)
 {
-   DACCON = 0x19;   // 12-bit, range VREF, sync bit cleared
+   DACCON = 0x1B;   // 12-bit, range VREF, sync bit cleared
 }
