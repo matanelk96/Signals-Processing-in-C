@@ -1,7 +1,7 @@
 
 """
 Names: Matan Ronen & Matanel Kadosh
-Generates peripherals.c/.h. Usage: py python generate_peripherals.py 
+Generates peripherals.c/.h. Usage: python generate_peripherals.py 
 The calculating of the baudrate:
 reload = 65536 - round(Fosc / ADC_sample_rate)
 """
