@@ -58,7 +58,7 @@ def main():
                 "   EADC = 1;        // Enable the ADC interrupt\n"
                 "}\n\n"
                 "void setDAC(void)\n{\n"
-                "   DACCON = 0X19; // 0001 1001: 12-bit, range VREF, bit 2 (sync) cleared\n"
+                "   DACCON = 0X1B; // 0001 1001: 12-bit, range VREF, bit 2 (sync) cleared\n"
                 "}\n\n"
             )
 
