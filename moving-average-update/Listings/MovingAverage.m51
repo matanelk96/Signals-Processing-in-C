@@ -1,0 +1,259 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/11/2026  20:44:01  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\circular_buffer.obj, .\Objects\main.obj, .\Objects\peripherals.obj TO .\Objects\Mo
+>> vingAverage PRINT (.\Listings\MovingAverage.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\circular_buffer.obj (CIRCULAR_BUFFER)
+  .\Objects\main.obj (MAIN)
+  .\Objects\peripherals.obj (PERIPHERALS)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CILDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ILDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ISTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SLDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?MAIN
+            DATA    0010H     0003H     UNIT         _DATA_GROUP_
+            DATA    0013H     0002H     UNIT         ?DT?CIRCULAR_BUFFER
+            DATA    0015H     0002H     UNIT         ?DT?PERIPHERALS
+                    0017H     0009H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?PERIPHERALS
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0066H     UNIT         ?ID?CIRCULAR_BUFFER
+            IDATA   0087H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0030H                  *** GAP ***
+            CODE    0033H     0003H     ABSOLUTE     
+                    0036H     07CAH                  *** GAP ***
+            CODE    0800H     01B5H     UNIT         ?C?LIB_CODE
+            CODE    09B5H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A41H     007AH     UNIT         ?PR?MAIN?MAIN
+            CODE    0ABBH     0062H     UNIT         ?PR?_UPDATE_CBUFFER?CIRCULAR_BUFFER
+            CODE    0B1DH     0044H     UNIT         ?C?LDIV
+            CODE    0B61H     002DH     UNIT         ?PR?_CBUFFER_RESET?CIRCULAR_BUFFER
+            CODE    0B8EH     0011H     UNIT         ?C_INITSEG
+            CODE    0B9FH     0009H     UNIT         ?PR?T2_INIT?PERIPHERALS
+            CODE    0BA8H     0009H     UNIT         ?PR?ADC_INIT?PERIPHERALS
+            CODE    0BB1H     0009H     UNIT         ?PR?ADC_ISR?PERIPHERALS
+            CODE    0BBAH     0004H     UNIT         ?PR?DAC_INIT?PERIPHERALS
+            CODE    0BBEH     0003H     UNIT         ?PR?GLOBALINT?PERIPHERALS
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 2
+
+
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\MovingAverage (CIRCULAR_BUFFER)
+
+
+SEGMENT                                       DATA_GROUP 
+  +--> CALLED SEGMENT                       START    LENGTH
+-----------------------------------------------------------
+?C_C51STARTUP                               -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                               -----    -----
+  +--> ?PR?T2_INIT?PERIPHERALS
+  +--> ?PR?ADC_INIT?PERIPHERALS
+  +--> ?PR?DAC_INIT?PERIPHERALS
+  +--> ?PR?GLOBALINT?PERIPHERALS
+  +--> ?PR?_CBUFFER_RESET?CIRCULAR_BUFFER
+  +--> ?PR?_UPDATE_CBUFFER?CIRCULAR_BUFFER
+
+?PR?_UPDATE_CBUFFER?CIRCULAR_BUFFER         0010H    0003H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CIRCULAR_BUFFER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0ABBH         PUBLIC        _update_cbuffer
+  I:0021H         PUBLIC        cbuffer
+  D:0013H         PUBLIC        t_oldest
+  C:0B61H         PUBLIC        _cbuffer_reset
+  -------         PROC          _CBUFFER_RESET
+  D:0001H         SYMBOL        cbrptr
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:0B61H         LINE#         11
+  C:0B61H         LINE#         12
+  C:0B61H         LINE#         14
+  C:0B64H         LINE#         15
+  C:0B64H         LINE#         16
+  C:0B74H         LINE#         17
+  C:0B7FH         LINE#         18
+  C:0B86H         LINE#         19
+  -------         ENDPROC       _CBUFFER_RESET
+  -------         PROC          _UPDATE_CBUFFER
+  D:0010H         SYMBOL        cbrptr
+  D:0004H         SYMBOL        newsample
+  C:0ABBH         LINE#         22
+  C:0AC1H         LINE#         23
+  C:0AC1H         LINE#         24
+  C:0AD9H         LINE#         25
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 3
+
+
+  C:0AE9H         LINE#         26
+  C:0B01H         LINE#         27
+  C:0B01H         LINE#         28
+  C:0B09H         LINE#         29
+  C:0B0BH         LINE#         31
+  C:0B0BH         LINE#         32
+  C:0B18H         LINE#         33
+  C:0B18H         LINE#         34
+  C:0B1CH         LINE#         35
+  -------         ENDPROC       _UPDATE_CBUFFER
+  -------         ENDMOD        CIRCULAR_BUFFER
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0008H         PUBLIC        oldest
+  D:00F9H         PUBLIC        DAC0DATA
+  D:00FBH         PUBLIC        DAC1DATA
+  C:0A41H         PUBLIC        main
+  D:000AH         PUBLIC        filtered
+  D:000CH         PUBLIC        sum
+  -------         PROC          MAIN
+  C:0A41H         LINE#         17
+  C:0A41H         LINE#         18
+  C:0A41H         LINE#         19
+  C:0A44H         LINE#         20
+  C:0A47H         LINE#         21
+  C:0A4AH         LINE#         22
+  C:0A4DH         LINE#         23
+  C:0A56H         LINE#         25
+  C:0A56H         LINE#         26
+  C:0A56H         LINE#         27
+  C:0A59H         LINE#         28
+  C:0A59H         LINE#         29
+  C:0A5BH         LINE#         30
+  C:0A6CH         LINE#         31
+  C:0A98H         LINE#         32
+  C:0AADH         LINE#         33
+  C:0AB3H         LINE#         34
+  C:0AB9H         LINE#         35
+  C:0AB9H         LINE#         36
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        PERIPHERALS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.6       PUBLIC        EADC
+  C:0BB1H         PUBLIC        ADC_ISR
+  D:00FDH         PUBLIC        DACCON
+  C:0BBAH         PUBLIC        DAC_Init
+  C:0BA8H         PUBLIC        ADC_Init
+  C:0BBEH         PUBLIC        GlobalINT
+  D:0015H         PUBLIC        newsample
+  B:00C8H.2       PUBLIC        TR2
+  D:00CAH         PUBLIC        RCAP2
+  D:00EFH         PUBLIC        ADCCON1
+  D:00D8H         PUBLIC        ADCCON2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 4
+
+
+  D:00D9H         PUBLIC        ADCDATA
+  B:0020H.0       PUBLIC        ADCflag
+  C:0B9FH         PUBLIC        T2_Init
+  -------         PROC          T2_INIT
+  C:0B9FH         LINE#         16
+  C:0B9FH         LINE#         17
+  C:0B9FH         LINE#         18
+  C:0BA1H         LINE#         19
+  C:0BA7H         LINE#         20
+  -------         ENDPROC       T2_INIT
+  -------         PROC          ADC_INIT
+  C:0BA8H         LINE#         22
+  C:0BA8H         LINE#         23
+  C:0BA8H         LINE#         24
+  C:0BABH         LINE#         25
+  C:0BAEH         LINE#         26
+  C:0BB0H         LINE#         27
+  -------         ENDPROC       ADC_INIT
+  -------         PROC          DAC_INIT
+  C:0BBAH         LINE#         29
+  C:0BBAH         LINE#         30
+  C:0BBAH         LINE#         31
+  C:0BBDH         LINE#         32
+  -------         ENDPROC       DAC_INIT
+  -------         PROC          GLOBALINT
+  C:0BBEH         LINE#         34
+  C:0BBEH         LINE#         35
+  C:0BBEH         LINE#         36
+  C:0BC0H         LINE#         37
+  -------         ENDPROC       GLOBALINT
+  -------         PROC          ADC_ISR
+  C:0BB1H         LINE#         39
+  C:0BB1H         LINE#         41
+  C:0BB7H         LINE#         43
+  C:0BB9H         LINE#         44
+  -------         ENDPROC       ADC_ISR
+  -------         ENDMOD        PERIPHERALS
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0800H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CILDOPTR
+  C:082DH         PUBLIC        ?C?CILDOPTR
+  -------         ENDMOD        ?C?CILDOPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:0860H         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?ILDOPTR
+  C:0882H         PUBLIC        ?C?ILDOPTR
+  -------         ENDMOD        ?C?ILDOPTR
+
+  -------         MODULE        ?C?ISTOPTR
+  C:08BAH         PUBLIC        ?C?ISTOPTR
+  -------         ENDMOD        ?C?ISTOPTR
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 5
+
+
+
+  -------         MODULE        ?C?SLDIV
+  C:0B1DH         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?ULDIV
+  C:0923H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 013EH BYTE (15%) *
+******************************************************************************
+
+Program Size: data=126.1 xdata=0 code=967
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

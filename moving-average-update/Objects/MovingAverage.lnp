@@ -1,0 +1,5 @@
+".\Objects\circular_buffer.obj",
+".\Objects\main.obj",
+".\Objects\peripherals.obj" 
+TO ".\Objects\MovingAverage" 
+PRINT(".\Listings\MovingAverage.m51") RAMSIZE(256) 

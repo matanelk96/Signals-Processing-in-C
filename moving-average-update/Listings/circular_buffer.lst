@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.0.0   CIRCULAR_BUFFER                                                   11/11/2026 20:43:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CIRCULAR_BUFFER
+OBJECT MODULE PLACED IN .\Objects\circular_buffer.obj
+COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE circular_buffer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\circular_buffer.lst) TABS(2) OBJECT(.\Objects\circular_buffer.obj)
+
+line level    source
+
+   1          /*
+   2           Name:
+   3           Date:
+   4           File:circular_buffer.c
+   5           */
+   6          #include "peripherals.h"
+   7          
+   8          struct buffer idata cbuffer;
+   9          unsigned int t_oldest;
+  10          
+  11          void cbuffer_reset(struct buffer *cbrptr) // clear the buffer
+  12          {
+  13   1          int i;
+  14   1          for (i = 0; i < FILTER_LENGTH; i++)
+  15   1          {
+  16   2              cbrptr->sample[i] = 0;      // Initialize all samples to zero
+  17   2          }
+  18   1          cbrptr->oldest_index = 0;     // Reset index pointer
+  19   1          cbrptr->length = FILTER_LENGTH;   // Set buffer length
+  20   1      }
+  21          
+  22          unsigned int update_cbuffer(struct buffer *cbrptr, unsigned int newsample)
+  23          {    
+  24   1          t_oldest = cbrptr->sample[cbrptr->oldest_index];  // Retrieve the oldest sample before overwriting it
+  25   1          cbrptr->sample[cbrptr->oldest_index] = newsample; // Store the new sample in the current index
+  26   1          if (cbrptr->oldest_index < (cbrptr->length) - 1)  // Update the index circularly
+  27   1          {
+  28   2              cbrptr->oldest_index++;
+  29   2          }
+  30   1          else
+  31   1          {
+  32   2              cbrptr->oldest_index = 0;
+  33   2          }
+  34   1          return t_oldest;      // Return the oldest sample to update the sum
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    143    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       3
+   IDATA SIZE       =    102    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

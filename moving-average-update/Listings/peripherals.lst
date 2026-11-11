@@ -1,0 +1,70 @@
+C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 20:44:00 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE PERIPHERALS
+OBJECT MODULE PLACED IN .\Objects\peripherals.obj
+COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE peripherals.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\peripherals.lst) TABS(2) OBJECT(.\Objects\peripherals.obj)
+
+line level    source
+
+   1          /*
+   2           Name:
+   3           Date:
+   4           File: peripheralsint.c
+   5           */
+   6          
+   7          #include <aduc841.h>
+   8          #include <stdio.h>
+   9          #include "peripherals.h"
+  10          
+  11          
+  12          bit ADCflag = 0;
+  13          unsigned int newsample = 0.0;
+  14          
+  15          
+  16          void T2_Init(void) 
+  17          {
+  18   1          TR2 =1;     // Turn on Timer 2
+  19   1        RCAP2 = 0xF75C; // Set Timer 2 auto-reload value for 5 kHz
+  20   1      }
+  21          
+  22          void ADC_Init(void) // ADC ON
+  23          {
+  24   1          ADCCON1 = 0xBA; // Power up, int. ref, clk/2, 3 acq. cycles, Timer 2 trigger
+  25   1          ADCCON2 = 0x00; // Select ADC Channel 0
+  26   1          EADC = 1;   // Enable ADC interrupt
+  27   1      }
+  28          
+  29          void DAC_Init(void) // // DAC0 and DAC1 ON
+  30          {
+  31   1          DACCON = 0x1F;  // 12-bit mode, 0-Vref range, both DACs powered and enabled
+  32   1      }
+  33          
+  34          void GlobalINT(void) // Global Interrup 
+  35          { 
+  36   1          EA = 1; // Enable interrupts globally
+  37   1      }
+  38          
+  39          void ADC_ISR(void) interrupt 6 // ADC ISR
+  40          { 
+  41   1        newsample = ADCDATA;  // Read the 12-bit ADC data via sfr16
+  42   1      //  DAC0DATA = ADCDATA;
+  43   1          ADCflag = 1;      // Set flag to process data in the main loop
+  44   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     34    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 20:44:00 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

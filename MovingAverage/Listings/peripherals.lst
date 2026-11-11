@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 19:34:18 PAGE 1   
+C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 20:23:35 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE PERIPHERALS
@@ -62,7 +62,7 @@ line level    source
   50   2              CircularBuffer.oldest_index = 0;                         // Reset index to 0 if at end of buffer
   51   2          }
   52   1          return x_old;                                          // Return old value
-C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 19:34:18 PAGE 2   
+C51 COMPILER V9.60.0.0   PERIPHERALS                                                       11/11/2026 20:23:35 PAGE 2   
 
   53   1      }
   54          

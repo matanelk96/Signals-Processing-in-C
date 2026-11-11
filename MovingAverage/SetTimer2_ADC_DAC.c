@@ -22,7 +22,6 @@ void init_Timer2(void)
 void setADC(void)
 {
    ADCCON1 = 0xBA;  // ADC on, Vref internal, Timer 2 starts conversions
-   CCONV = 1;       // Continuous conversion
    ADCCON2 &= 0xF0; // Channel 0
    EADC = 1;        // Enable ADC interrupt
 }

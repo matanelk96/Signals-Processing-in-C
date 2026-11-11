@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   SETTIMER2_ADC_DAC                                                 11/11/2026 19:34:22 PAGE 1   
+C51 COMPILER V9.60.0.0   SETTIMER2_ADC_DAC                                                 11/11/2026 20:23:36 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SETTIMER2_ADC_DAC
@@ -32,19 +32,18 @@ line level    source
   22          void setADC(void)
   23          {
   24   1         ADCCON1 = 0xBA;  // ADC on, Vref internal, Timer 2 starts conversions
-  25   1         CCONV = 1;       // Continuous conversion
-  26   1         ADCCON2 &= 0xF0; // Channel 0
-  27   1         EADC = 1;        // Enable ADC interrupt
-  28   1      }
-  29          
-  30          void setDAC(void)
-  31          {
-  32   1         DACCON = 0x1B;   // 12-bit, range VREF, sync bit cleared
-  33   1      }
+  25   1         ADCCON2 &= 0xF0; // Channel 0
+  26   1         EADC = 1;        // Enable ADC interrupt
+  27   1      }
+  28          
+  29          void setDAC(void)
+  30          {
+  31   1         DACCON = 0x1B;   // 12-bit, range VREF, sync bit cleared
+  32   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     35    ----
+   CODE SIZE        =     33    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

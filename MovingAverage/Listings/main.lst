@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 19:34:17 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 20:23:35 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -39,24 +39,31 @@ line level    source
   29   1        {
   30   2          if(FLAG)
   31   2          {
-  32   3                  FLAG = 0;                      // Reset the sample flag
-  33   3                  x_old = update_buffer(x_new);  // Update buffer with new value
-  34   3                  DACCON &= ~0x04;           // Do not output the data in the DACs yet
-  35   3                  DAC0 = x_new;                  // Update DAC0 with new value
-  36   3                  sum += (x_new - x_old);        // Update sum with difference
-  37   3                  DAC1 = (int) (sum/FILTER_TAPS);// Update DAC1 with the averaged sum
-  38   3            DACCON |= 0X04;          // Output the data in the DACs synchronizely
-  39   3              }
-  40   2        }
-  41   1      }
-  42          
+  32   3              EADC = 0;                       // ????? ?????? ?????? ?????
+  33   3              FLAG = 0;                       // ????? ????
+  34   3              x_old = update_buffer(x_new);   
+  35   3              DACCON &= ~0x04;                // ????? ????? ?-DAC
+  36   3              DAC0 = x_new;                   
+  37   3              
+  38   3              // ?????? ??????: ???? ?????? ???? ????? ????? ??????
+  39   3              sum += ((long int)x_new - (long int)x_old); 
+  40   3              
+  41   3              DAC1 = (int) (sum/FILTER_TAPS);
+  42   3              DACCON |= 0X04;                 // ????? ?????? ?-DAC
+  43   3              EADC = 1;                       // ????? ??????
+  44   3          }
+  45   2        }
+  46   1      }
+  47          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    103    ----
+   CODE SIZE        =    127    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 20:23:35 PAGE 2   
+
    DATA SIZE        =      6    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
