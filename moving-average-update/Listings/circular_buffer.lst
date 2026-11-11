@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   CIRCULAR_BUFFER                                                   11/11/2026 20:43:59 PAGE 1   
+C51 COMPILER V9.60.0.0   CIRCULAR_BUFFER                                                   11/11/2026 21:19:38 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CIRCULAR_BUFFER
@@ -9,40 +9,42 @@ COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE circular_buffer.c OPTIMIZE(8,SPE
 line level    source
 
    1          /*
-   2           Name:
-   3           Date:
-   4           File:circular_buffer.c
-   5           */
-   6          #include "peripherals.h"
-   7          
-   8          struct buffer idata cbuffer;
-   9          unsigned int t_oldest;
-  10          
-  11          void cbuffer_reset(struct buffer *cbrptr) // clear the buffer
-  12          {
-  13   1          int i;
-  14   1          for (i = 0; i < FILTER_LENGTH; i++)
-  15   1          {
-  16   2              cbrptr->sample[i] = 0;      // Initialize all samples to zero
-  17   2          }
-  18   1          cbrptr->oldest_index = 0;     // Reset index pointer
-  19   1          cbrptr->length = FILTER_LENGTH;   // Set buffer length
-  20   1      }
-  21          
-  22          unsigned int update_cbuffer(struct buffer *cbrptr, unsigned int newsample)
-  23          {    
-  24   1          t_oldest = cbrptr->sample[cbrptr->oldest_index];  // Retrieve the oldest sample before overwriting it
-  25   1          cbrptr->sample[cbrptr->oldest_index] = newsample; // Store the new sample in the current index
-  26   1          if (cbrptr->oldest_index < (cbrptr->length) - 1)  // Update the index circularly
-  27   1          {
-  28   2              cbrptr->oldest_index++;
-  29   2          }
-  30   1          else
-  31   1          {
-  32   2              cbrptr->oldest_index = 0;
-  33   2          }
-  34   1          return t_oldest;      // Return the oldest sample to update the sum
-  35   1      }
+   2            Name: Matan Ronen & Matanel Kadosh
+   3            Date: 14.07.2026
+   4            Grader: ?
+   5            File:circular_buffer.c
+   6            This file implement the moving average filter buffer.
+   7           */
+   8          #include "peripherals.h"
+   9          
+  10          struct buffer idata cbuffer;
+  11          unsigned int t_oldest;
+  12          
+  13          void cbuffer_reset(struct buffer *cbrptr) // clear the buffer
+  14          {
+  15   1          int i;
+  16   1          for (i = 0; i < FILTER_LENGTH; i++)
+  17   1          {
+  18   2              cbrptr->sample[i] = 0;      // Initialize all samples to zero
+  19   2          }
+  20   1          cbrptr->oldest_index = 0;     // Reset index pointer
+  21   1          cbrptr->length = FILTER_LENGTH;   // Set buffer length
+  22   1      }
+  23          
+  24          unsigned int update_cbuffer(struct buffer *cbrptr, unsigned int newsample)
+  25          {    
+  26   1          t_oldest = cbrptr->sample[cbrptr->oldest_index];  // Retrieve the oldest sample before overwriting it
+  27   1          cbrptr->sample[cbrptr->oldest_index] = newsample; // Store the new sample in the current index
+  28   1          if (cbrptr->oldest_index < (cbrptr->length) - 1)  // Update the index circularly
+  29   1          {
+  30   2              cbrptr->oldest_index++;
+  31   2          }
+  32   1          else
+  33   1          {
+  34   2              cbrptr->oldest_index = 0;
+  35   2          }
+  36   1          return t_oldest;      // Return the oldest sample to update the sum
+  37   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

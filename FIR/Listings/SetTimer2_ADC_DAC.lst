@@ -1,0 +1,61 @@
+C51 COMPILER V9.60.0.0   SETTIMER2_ADC_DAC                                                 11/11/2026 21:30:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SETTIMER2_ADC_DAC
+OBJECT MODULE PLACED IN .\Objects\SetTimer2_ADC_DAC.obj
+COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE SetTimer2_ADC_DAC.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
+                    -Listings\SetTimer2_ADC_DAC.lst) TABS(2) OBJECT(.\Objects\SetTimer2_ADC_DAC.obj)
+
+line level    source
+
+   1          /*
+   2          Names: Matan Ronen & Matanel Kadosh
+   3          File: SetTimer2_ADC_DAC.c
+   4          Peripheral initialization for Timer2 (ADC sample clock), ADC, and DAC.
+   5          
+   6          The Timer2 reload value targets Fs = 1 kHz, matching the placeholder
+   7          coefficients in coeffs.h. If coeffs.h is regenerated for a different Fs,
+   8          recompute the reload: reload = 65536 - round(11059200 / Fs)
+   9          (fir_design.py prints the RCAP2H/RCAP2L values to use).
+  10          */
+  11          
+  12          #include <aduc841.h>
+  13          #include "SetTimer2_ADC_DAC.h"
+  14          
+  15          sfr16 RCAP2 = 0xCA;   // RCAP2L = 0xCA, RCAP2H = 0xCB
+  16          sfr16 T2_REG    = 0xCC;   // TL2 = 0xCC,    TH2 = 0xCD
+  17          
+  18          void init_Timer2(void)
+  19          {
+  20   1          T2CON = 0x00;           // Timer2, 16-bit auto-reload, timer mode
+  21   1          RCAP2 = 0xD4CD;         // reload for Fs = 11059200 / (65536 - 0xD4CD) = 1 kHz
+  22   1          T2_REG = RCAP2;         // load TH2:TL2 now - the reload only happens after the first overflow
+  23   1          TF2 = 0;
+  24   1          TR2 = 1;
+  25   1      }
+  26          
+  27          void setADC(void)
+  28          {
+  29   1          ADCCON1 = 0xBA;     // ADC on, on-chip Vref, T2C = 1 (Timer2 overflow starts a conversion)
+  30   1          ADCCON2 &= 0x00;    // channel 0
+  31   1          EADC = 1;           // enable the ADC interrupt
+  32   1      }
+  33          
+  34          void setDAC(void)
+  35          {
+  36   1          DACCON = 0x1F;      // 12-bit mode, DAC0/DAC1 range = VREF, both DACs on
+  37   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -13,13 +13,13 @@ recompute the reload: reload = 65536 - round(11059200 / Fs)
 #include "SetTimer2_ADC_DAC.h"
 
 sfr16 RCAP2 = 0xCA;   // RCAP2L = 0xCA, RCAP2H = 0xCB
-sfr16 T2    = 0xCC;   // TL2 = 0xCC,    TH2 = 0xCD
+sfr16 T2_REG    = 0xCC;   // TL2 = 0xCC,    TH2 = 0xCD
 
 void init_Timer2(void)
 {
-    T2CON = 0x00;       // Timer2, 16-bit auto-reload, timer mode
-    RCAP2 = 0xD4CD;     // reload for Fs = 11059200 / (65536 - 0xD4CD) = 1 kHz
-    T2 = RCAP2;         // load TH2:TL2 now - the reload only happens after the first overflow
+    T2CON = 0x00;       		// Timer2, 16-bit auto-reload, timer mode
+    RCAP2 = 0xD4CD;     		// reload for Fs = 11059200 / (65536 - 0xD4CD) = 1 kHz
+    T2_REG = RCAP2;         // load TH2:TL2 now - the reload only happens after the first overflow
     TF2 = 0;
     TR2 = 1;
 }
@@ -27,12 +27,11 @@ void init_Timer2(void)
 void setADC(void)
 {
     ADCCON1 = 0xBA;     // ADC on, on-chip Vref, T2C = 1 (Timer2 overflow starts a conversion)
-    CCONV = 1;          // continuous conversion
-    ADCCON2 &= 0xF0;    // channel 0
+    ADCCON2 &= 0x00;    // channel 0
     EADC = 1;           // enable the ADC interrupt
 }
 
 void setDAC(void)
 {
-    DACCON = 0x19;      // 12-bit mode, DAC0/DAC1 range = VREF, both DACs on
+    DACCON = 0x1F;      // 12-bit mode, DAC0/DAC1 range = VREF, both DACs on
 }

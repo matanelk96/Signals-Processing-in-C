@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 20:43:59 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 21:19:39 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -9,43 +9,46 @@ COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE 
 line level    source
 
    1          /*
-   2           Name:
-   3           Date:
-   4           DESCRIPTION: Moving average filter implementation
-   5           File:main lab6.c
-   6           */
-   7          #include <aduc841.h>
-   8          #include <stdio.h>
-   9          #include "peripherals.h"
-  10          
-  11          #define FILTER_LENGTH 50
-  12          
-  13          long int sum = 0;
-  14          unsigned int filtered = 0;
-  15          unsigned int oldest;
-  16          
-  17          void main(void)
-  18          {
-  19   1        T2_Init();               // Initialize Timer 2 for ADC sampling rate
-  20   1          ADC_Init();              // Initialize Analog-to-Digital Converter
-  21   1          DAC_Init();              // Initialize Digital-to-Analog Converters
-  22   1          GlobalINT();             // Enable global interrupts
-  23   1          cbuffer_reset(&cbuffer); // Clear all values in the circular buffer
-  24   1        
-  25   1          while (1)
-  26   1          {
-  27   2              if (ADCflag) // Check if a new sample is ready
-  28   2              {
-  29   3                  ADCflag = 0;  // Clear the flag for the next interrupt
-  30   3                  oldest = update_cbuffer(&cbuffer, newsample);  // Add the new sample to the buffer and retriev
+   2          Name: Matan Ronen & Matanel Kadosh
+   3          Date: 14.07.2026
+   4          Grader: ?
+   5          File: main.c
+   6          This file implement an IIR moving average filter on the data 
+   7          from channel 0 ADC. In DAC0 the output is the origin data,
+   8          and in DAC1 the output is the data after the filter.
+   9          */
+  10          #include <aduc841.h>
+  11          #include <stdio.h>
+  12          #include "peripherals.h"
+  13          
+  14          #define FILTER_LENGTH 50
+  15          
+  16          long int sum = 0;
+  17          unsigned int filtered = 0;
+  18          unsigned int oldest;
+  19          
+  20          void main(void)
+  21          {
+  22   1        T2_Init();               // Initialize Timer 2 for ADC sampling rate
+  23   1          ADC_Init();              // Initialize Analog-to-Digital Converter
+  24   1          DAC_Init();              // Initialize Digital-to-Analog Converters
+  25   1          GlobalINT();             // Enable global interrupts
+  26   1          cbuffer_reset(&cbuffer); // Clear all values in the circular buffer
+  27   1        
+  28   1          while (1)
+  29   1          {
+  30   2              if (ADCflag) // Check if a new sample is ready
+  31   2              {
+  32   3                  ADCflag = 0;  // Clear the flag for the next interrupt
+  33   3                  oldest = update_cbuffer(&cbuffer, newsample);  // Add the new sample to the buffer and retriev
              -e the oldest sample
-  31   3                  sum = (sum - oldest) + newsample;  // Update the running sum (subtract oldest, add newest)
-  32   3                  filtered = sum / FILTER_LENGTH;    // Calculate the moving average
-  33   3                  DAC0DATA =  newsample;    // Output the raw signal to DAC0
-  34   3                  DAC1DATA = filtered;      // Output the filtered signal to DAC1
-  35   3              }
-  36   2          }
-  37   1      }
+  34   3                  sum = (sum - oldest) + newsample;  // Update the running sum (subtract oldest, add newest)
+  35   3                  filtered = sum / FILTER_LENGTH;    // Calculate the moving average
+  36   3                  DAC0DATA =  newsample;    // Output the raw signal to DAC0
+  37   3                  DAC1DATA = filtered;      // Output the filtered signal to DAC1
+  38   3              }
+  39   2          }
+  40   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -1,0 +1,47 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              11/11/2026 21:30:45 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: c:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*
+   2          Names: Matan Ronen & Matanel Kadosh
+   3          File: main.c
+   4          Chapter 22 lab: a simple FIR low-pass filter.
+   5          ADC channel 0 is sampled at a rate set by Timer2. DAC0 outputs the raw
+   6          sample, DAC1 outputs the filtered sample (or zero, if the filter output
+   7          would have been negative). All the filtering work happens in the ADC
+   8          interrupt (ADC_ISR, in peripherals.c) -- main() just initializes the
+   9          peripherals and idles.
+  10          */
+  11          
+  12          #include <aduc841.h>
+  13          #include "SetTimer2_ADC_DAC.h"
+  14          
+  15          void main(void)
+  16          {
+  17   1          init_Timer2();
+  18   1          setADC();
+  19   1          setDAC();
+  20   1          EA = 1;
+  21   1      
+  22   1          while (1) {}
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     13    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

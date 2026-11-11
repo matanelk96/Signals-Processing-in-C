@@ -1,0 +1,5 @@
+".\Objects\main.obj",
+".\Objects\peripherals.obj",
+".\Objects\SetTimer2_ADC_DAC.obj" 
+TO ".\Objects\fir" 
+PRINT(".\Listings\fir.m51") RAMSIZE(256) 

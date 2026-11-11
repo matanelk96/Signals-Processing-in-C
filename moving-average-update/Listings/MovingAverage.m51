@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/11/2026  20:44:01  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/11/2026  21:19:40  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
             CODE    0BB1H     0009H     UNIT         ?PR?ADC_ISR?PERIPHERALS
             CODE    0BBAH     0004H     UNIT         ?PR?DAC_INIT?PERIPHERALS
             CODE    0BBEH     0003H     UNIT         ?PR?GLOBALINT?PERIPHERALS
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  21:19:40  PAGE 2
 
 
 
@@ -103,34 +103,34 @@ SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
   -------         DO            
   D:0004H         SYMBOL        i
   -------         ENDDO         
-  C:0B61H         LINE#         11
-  C:0B61H         LINE#         12
+  C:0B61H         LINE#         13
   C:0B61H         LINE#         14
-  C:0B64H         LINE#         15
-  C:0B64H         LINE#         16
-  C:0B74H         LINE#         17
-  C:0B7FH         LINE#         18
-  C:0B86H         LINE#         19
+  C:0B61H         LINE#         16
+  C:0B64H         LINE#         17
+  C:0B64H         LINE#         18
+  C:0B74H         LINE#         19
+  C:0B7FH         LINE#         20
+  C:0B86H         LINE#         21
   -------         ENDPROC       _CBUFFER_RESET
   -------         PROC          _UPDATE_CBUFFER
   D:0010H         SYMBOL        cbrptr
   D:0004H         SYMBOL        newsample
-  C:0ABBH         LINE#         22
-  C:0AC1H         LINE#         23
-  C:0AC1H         LINE#         24
-  C:0AD9H         LINE#         25
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 3
+  C:0ABBH         LINE#         24
+  C:0AC1H         LINE#         25
+  C:0AC1H         LINE#         26
+  C:0AD9H         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  21:19:40  PAGE 3
 
 
-  C:0AE9H         LINE#         26
-  C:0B01H         LINE#         27
-  C:0B01H         LINE#         28
-  C:0B09H         LINE#         29
-  C:0B0BH         LINE#         31
-  C:0B0BH         LINE#         32
-  C:0B18H         LINE#         33
-  C:0B18H         LINE#         34
-  C:0B1CH         LINE#         35
+  C:0AE9H         LINE#         28
+  C:0B01H         LINE#         29
+  C:0B01H         LINE#         30
+  C:0B09H         LINE#         31
+  C:0B0BH         LINE#         33
+  C:0B0BH         LINE#         34
+  C:0B18H         LINE#         35
+  C:0B18H         LINE#         36
+  C:0B1CH         LINE#         37
   -------         ENDPROC       _UPDATE_CBUFFER
   -------         ENDMOD        CIRCULAR_BUFFER
 
@@ -143,25 +143,25 @@ SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
   D:000AH         PUBLIC        filtered
   D:000CH         PUBLIC        sum
   -------         PROC          MAIN
-  C:0A41H         LINE#         17
-  C:0A41H         LINE#         18
-  C:0A41H         LINE#         19
-  C:0A44H         LINE#         20
-  C:0A47H         LINE#         21
-  C:0A4AH         LINE#         22
-  C:0A4DH         LINE#         23
-  C:0A56H         LINE#         25
-  C:0A56H         LINE#         26
-  C:0A56H         LINE#         27
-  C:0A59H         LINE#         28
-  C:0A59H         LINE#         29
-  C:0A5BH         LINE#         30
-  C:0A6CH         LINE#         31
-  C:0A98H         LINE#         32
-  C:0AADH         LINE#         33
-  C:0AB3H         LINE#         34
-  C:0AB9H         LINE#         35
-  C:0AB9H         LINE#         36
+  C:0A41H         LINE#         20
+  C:0A41H         LINE#         21
+  C:0A41H         LINE#         22
+  C:0A44H         LINE#         23
+  C:0A47H         LINE#         24
+  C:0A4AH         LINE#         25
+  C:0A4DH         LINE#         26
+  C:0A56H         LINE#         28
+  C:0A56H         LINE#         29
+  C:0A56H         LINE#         30
+  C:0A59H         LINE#         31
+  C:0A59H         LINE#         32
+  C:0A5BH         LINE#         33
+  C:0A6CH         LINE#         34
+  C:0A98H         LINE#         35
+  C:0AADH         LINE#         36
+  C:0AB3H         LINE#         37
+  C:0AB9H         LINE#         38
+  C:0AB9H         LINE#         39
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -179,44 +179,44 @@ SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
   D:00CAH         PUBLIC        RCAP2
   D:00EFH         PUBLIC        ADCCON1
   D:00D8H         PUBLIC        ADCCON2
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  21:19:40  PAGE 4
 
 
   D:00D9H         PUBLIC        ADCDATA
   B:0020H.0       PUBLIC        ADCflag
   C:0B9FH         PUBLIC        T2_Init
   -------         PROC          T2_INIT
-  C:0B9FH         LINE#         16
-  C:0B9FH         LINE#         17
   C:0B9FH         LINE#         18
-  C:0BA1H         LINE#         19
-  C:0BA7H         LINE#         20
+  C:0B9FH         LINE#         19
+  C:0B9FH         LINE#         20
+  C:0BA1H         LINE#         21
+  C:0BA7H         LINE#         22
   -------         ENDPROC       T2_INIT
   -------         PROC          ADC_INIT
-  C:0BA8H         LINE#         22
-  C:0BA8H         LINE#         23
   C:0BA8H         LINE#         24
-  C:0BABH         LINE#         25
-  C:0BAEH         LINE#         26
-  C:0BB0H         LINE#         27
+  C:0BA8H         LINE#         25
+  C:0BA8H         LINE#         26
+  C:0BABH         LINE#         27
+  C:0BAEH         LINE#         28
+  C:0BB0H         LINE#         29
   -------         ENDPROC       ADC_INIT
   -------         PROC          DAC_INIT
-  C:0BBAH         LINE#         29
-  C:0BBAH         LINE#         30
   C:0BBAH         LINE#         31
-  C:0BBDH         LINE#         32
+  C:0BBAH         LINE#         32
+  C:0BBAH         LINE#         33
+  C:0BBDH         LINE#         34
   -------         ENDPROC       DAC_INIT
   -------         PROC          GLOBALINT
-  C:0BBEH         LINE#         34
-  C:0BBEH         LINE#         35
   C:0BBEH         LINE#         36
-  C:0BC0H         LINE#         37
+  C:0BBEH         LINE#         37
+  C:0BBEH         LINE#         38
+  C:0BC0H         LINE#         39
   -------         ENDPROC       GLOBALINT
   -------         PROC          ADC_ISR
-  C:0BB1H         LINE#         39
   C:0BB1H         LINE#         41
-  C:0BB7H         LINE#         43
-  C:0BB9H         LINE#         44
+  C:0BB1H         LINE#         43
+  C:0BB7H         LINE#         45
+  C:0BB9H         LINE#         46
   -------         ENDPROC       ADC_ISR
   -------         ENDMOD        PERIPHERALS
 
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\MovingAverage (CIRCULAR_BUFFER)
   -------         MODULE        ?C?ISTOPTR
   C:08BAH         PUBLIC        ?C?ISTOPTR
   -------         ENDMOD        ?C?ISTOPTR
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  20:44:01  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/11/2026  21:19:40  PAGE 5
 
 
 
